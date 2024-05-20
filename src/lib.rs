@@ -8,4 +8,6 @@
 mod db_session_storage;
 mod entities;
 
+pub mod migration;
+
 pub use db_session_storage::*;
