@@ -7,7 +7,7 @@ use sea_orm::{
 };
 use serde_json::Value;
 
-use entities::poem_sessions;
+use crate::entities::poem_sessions;
 
 #[derive(Clone)]
 pub struct DbSessionStorage {

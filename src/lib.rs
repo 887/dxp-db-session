@@ -6,5 +6,6 @@
 )]
 
 mod db_session_storage;
+mod entities;
 
 pub use db_session_storage::*;
