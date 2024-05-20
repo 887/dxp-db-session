@@ -1,0 +1,15 @@
+[package]
+name = "dbsession"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+poem = { workspace = true, features = ["session"], default-features = true }
+serde = { workspace = true, features = ["derive"] }
+sea-orm = { workspace = true, features = [ "chrono"] }
+# here it's ok to use the entities, this crate only uses the session
+entities = { workspace = true }
+chrono = { workspace = true, features = ["clock"] }
+serde_json = "1.0.113"
