@@ -1,6 +1,5 @@
-use sea_orm::entity::prelude::*;
-// use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Utc};
+use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, Eq, DeriveEntityModel)]
 #[sea_orm(table_name = "poem_sessions")]
