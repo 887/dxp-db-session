@@ -34,9 +34,11 @@ impl DbSessionStorage {
     }
 }
 
-#[poem::async_trait]
 impl SessionStorage for DbSessionStorage {
-    async fn load_session(&self, session_id: &str) -> Result<Option<BTreeMap<String, Value>>> {
+    async fn load_session<'a>(
+        &'a self,
+        session_id: &'a str,
+    ) -> Result<Option<BTreeMap<String, Value>>> {
         // const LOAD_SESSION_SQL: &str = r#"
         //     select session from {table_name}
         //         where id = $1 and (expires is null or expires > $2)
@@ -65,10 +67,10 @@ impl SessionStorage for DbSessionStorage {
         }
     }
 
-    async fn update_session(
-        &self,
-        session_id: &str,
-        entries: &BTreeMap<String, Value>,
+    async fn update_session<'a>(
+        &'a self,
+        session_id: &'a str,
+        entries: &'a BTreeMap<String, Value>,
         expires: Option<Duration>,
     ) -> Result<()> {
         // const UPDATE_SESSION_SQL: &str = r#"
@@ -112,7 +114,10 @@ impl SessionStorage for DbSessionStorage {
         Ok(())
     }
 
-    async fn remove_session(&self, session_id: &str) -> Result<()> {
+    async fn remove_session<'a>(
+        &'a self,
+        session_id: &'a str,
+    ) -> Result<()> {
         // const REMOVE_SESSION_SQL: &str = r#"
         //     delete from {table_name} where id = $1
         // "#;
