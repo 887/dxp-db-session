@@ -9,7 +9,7 @@ use serde_json::Value;
 
 use crate::entities::poem_sessions;
 
-#[derive(Clone)]
+#[derive(Clone, Debug, Default)]
 pub struct DbSessionStorage {
     db: DatabaseConnection,
 }
@@ -114,10 +114,7 @@ impl SessionStorage for DbSessionStorage {
         Ok(())
     }
 
-    async fn remove_session<'a>(
-        &'a self,
-        session_id: &'a str,
-    ) -> Result<()> {
+    async fn remove_session<'a>(&'a self, session_id: &'a str) -> Result<()> {
         // const REMOVE_SESSION_SQL: &str = r#"
         //     delete from {table_name} where id = $1
         // "#;
