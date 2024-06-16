@@ -17,16 +17,12 @@ impl MigrationTrait for Migration {
                     .if_not_exists()
                     .col(
                         ColumnDef::new(PoemSessions::Id)
-                            .string()
+                            .string_len(50)
                             .not_null()
                             .primary_key(),
                     )
                     .col(ColumnDef::new(PoemSessions::Expires).date_time().null())
-                    .col(
-                        ColumnDef::new(PoemSessions::Session)
-                            .string_len(50)
-                            .not_null(),
-                    )
+                    .col(ColumnDef::new(PoemSessions::Session).text().not_null())
                     .to_owned(),
             )
             .await?;
